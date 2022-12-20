@@ -5,6 +5,8 @@ key_map = {
     "slow movement shift" : 'alt',
     "move forward" : 'w',
     "move back" : 's',
+    "move left" : 'a',
+    "move right" : 'd',
     "jump" : 'space',
     "crouch/release crouch" : 'q',
     "camera up" : 'up',
@@ -35,6 +37,16 @@ def walk_backwards(seconds):
     pydirectinput.keyDown(key_map["move back"])
     time.sleep(seconds)
     pydirectinput.keyUp(key_map["move back"])
+    
+def walk_left(seconds):
+    pydirectinput.keyDown(key_map["move left"])
+    time.sleep(seconds)
+    pydirectinput.keyUp(key_map["move left"])
+    
+def walk_right(seconds):
+    pydirectinput.keyDown(key_map["move right"])
+    time.sleep(seconds)
+    pydirectinput.keyUp(key_map["move right"])
 
 def walk_slow_start():
     pydirectinput.keyDown(key_map["slow movement shift"])
@@ -85,17 +97,15 @@ def _camera_horizontal_seconds_for_degree(angle):
 
 def camera_lock():
     pydirectinput.press(key_map["camera reset/lock on"])
-
-def camera_left(degrees):
-    seconds = _camera_horizontal_seconds_for_degree(degrees)
+    
+def camera_left(secords):
     pydirectinput.keyDown(key_map["camera left"])
-    time.sleep(seconds)
+    time.sleep(secords)
     pydirectinput.keyUp(key_map["camera left"])
-
-def camera_right(degrees):
-    seconds = _camera_horizontal_seconds_for_degree(degrees)
+    
+def camera_right(secords):
     pydirectinput.keyDown(key_map["camera right"])
-    time.sleep(seconds)
+    time.sleep(secords)
     pydirectinput.keyUp(key_map["camera right"])
 
 def camera_up(degrees):

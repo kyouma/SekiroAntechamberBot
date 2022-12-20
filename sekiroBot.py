@@ -1,5 +1,6 @@
 import time
 import sekiro
+import pydirectinput
 
 
 # Run this to begin the farm bot program.
@@ -18,7 +19,7 @@ def use_idol():
     ### If your computer loads faster or slower, you may need to change this setting.
     # Use a stopwatch to time using the idol - stop when game is fully loaded.
     # add about 3 seconds as it's a good time to alt tab and stop the script
-    wait_time = 18
+    wait_time = 20
     print(" -- Using Idol.")
     sekiro.item_use()
     sekiro.menu_down()
@@ -88,27 +89,41 @@ def second_enemy_approach():
     sekiro.walk_slow_start()
     sekiro.walk_forward(.8)
     sekiro.walk_slow_stop()
-
+    
 def farm_route_instructions():
     use_idol()
-    bulwark_line_up()
-    bulwark_jump()
-    ledge_jump()
-    platform_grapple()
-    first_enemy_approach()
-    kill_and_collect()
-    platform_drop_off()
-    second_platform_drop_off()
-    second_enemy_approach()
-    kill_and_collect()
+    
+    sekiro.walk_backwards(0.01)
+    time.sleep(.1)
+    sekiro.camera_lock()
+    
+    sekiro.walk_forward(10)
+    time.sleep(.1)
+    
+    sekiro.camera_left(0.8)
+    time.sleep(.1)
+    sekiro.camera_lock()
+    
+    sekiro.walk_slow_start()
+    sekiro.walk_forward(4)
+    time.sleep(.1)
+    sekiro.walk_right(0.5)
+    time.sleep(.1)
+    sekiro.walk_forward(2)
+    sekiro.walk_slow_stop()
+    
+    sekiro.attack()
+    
+    time.sleep(3)
+    sekiro.interact_hold(1.2)
 
 def print_farm_report(run_count):
     # Change these variables to match the xp/money given for a kill.
     # My numbers are based on NG4
-    money_from_kill = 220
-    exp_from_kill = 1854
+    money_from_kill = 320
+    exp_from_kill = 3156
     # This is only useful if you write a new route, it will always be 2 for this bot.
-    enemies_per_run = 2
+    enemies_per_run = 1
     kill_count = run_count * enemies_per_run
     money_earned = run_count * money_from_kill * enemies_per_run
     experience_earned = run_count * exp_from_kill * enemies_per_run
